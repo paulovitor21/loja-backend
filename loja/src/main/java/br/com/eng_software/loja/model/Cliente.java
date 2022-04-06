@@ -15,6 +15,7 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	@Column(name = "id_cliente")
 	private int idCliente;
 	
@@ -27,7 +28,7 @@ public class Cliente {
 	@Column(name = "telefone_cliente", length = 20, nullable = false, unique = true)
 	private String telefone;
 	
-	@Column(name = "cep", length = 10, nullable = false)
+	@Column(name = "cep_cliente", length = 10, nullable = false)
 	private String cep;
 	
 	@Column(name = "logradouro", length = 100)
@@ -39,7 +40,7 @@ public class Cliente {
 	@Column(name = "complemento", length = 50)
 	private String complemento;
 	
-	@Column(name = "bairro", length = 100)
+	@Column(name = "bairro", length = 50)
 	private String bairro;
 	
 	@Column(name = "cidade", length = 100)
