@@ -28,6 +28,9 @@ public class Cliente {
 	@Column(name = "telefone_cliente", length = 20, nullable = false, unique = true)
 	private String telefone;
 	
+	@Column(name = "cpf_cliente", length = 15, nullable = false)
+	private String cpf;
+	
 	@Column(name = "cep_cliente", length = 10, nullable = false)
 	private String cep;
 	
@@ -79,6 +82,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getCep() {

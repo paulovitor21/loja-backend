@@ -17,9 +17,9 @@ public class ClienteController {
 	@Autowired
 	private IClienteService service;
 	
-	@GetMapping("/cliente/{telefone}")
-	public ResponseEntity<Cliente> buscarPeloTelefone(@PathVariable String telefone) {
-		Cliente resultado = service.buscarPeloTelefone(telefone);
+	@GetMapping("/cliente/{cpf}")
+	public ResponseEntity<Cliente> buscarPeloCpf(@PathVariable String cpf) {
+		Cliente resultado = service.buscarPeloCpf(cpf);
 		if (resultado != null) {
 			return ResponseEntity.ok(resultado);
 		}

@@ -12,11 +12,9 @@ public class ClienteServiceImpl implements IClienteService {
 	private ClienteDAO dao;
 
 	@Override
-	public Cliente buscarPeloTelefone(String telefone) {
-		if (telefone.charAt(0) == '0') {
-			telefone = telefone.substring(1);
-		}
-		return dao.findByTelefone(telefone);
+	public Cliente buscarPeloCpf(String cpf) {
+		
+		return dao.findByCpf(cpf);
 	}
 
 	@Override
