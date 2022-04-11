@@ -1,5 +1,7 @@
 package br.com.eng_software.loja.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,9 @@ public class Cliente {
 	
 	@Column(name = "telefone_cliente", length = 20, nullable = false, unique = true)
 	private String telefone;
+	
+	@Column(name = "data_nasc")
+	private LocalDate dataNasc;
 	
 	@Column(name = "cpf_cliente", length = 15, nullable = false)
 	private String cpf;
@@ -82,6 +87,14 @@ public class Cliente {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public LocalDate getDataNasc() {
+		return dataNasc;
+	}
+
+	public void setDataNasc(LocalDate dataNasc) {
+		this.dataNasc = dataNasc;
 	}
 
 	public String getCpf() {

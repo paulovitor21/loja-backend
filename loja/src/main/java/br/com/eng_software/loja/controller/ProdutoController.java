@@ -73,4 +73,13 @@ public class ProdutoController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@GetMapping("/produto/busca")
+	public ResponseEntity<ArrayList<Produto>> buscarPorPalavraChave(@RequestParam (name="key") String key) {
+		System.out.println("key = " + key);
+		if (key != null) {
+			return ResponseEntity.ok(service.listarPorPalavraChave(key));
+		}
+		return ResponseEntity.badRequest().build();
+	}
+	
 }
