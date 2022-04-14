@@ -55,4 +55,14 @@ public class CategoriaServiceImpl implements ICategoriaService {
 		return null;
 	}
 
+	@Override
+	public Categoria recuperarPorId(int id) {
+		return dao.findById(id).orElse(null);
+	}
+
+	@Override
+	public ArrayList<Categoria> recuperarTodasOrdenadasPeloId() {
+		return dao.findAllByOrderById();
+	}
+
 }

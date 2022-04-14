@@ -18,11 +18,23 @@ public class MyWebApplicationSecurityConfig extends WebSecurityConfigurerAdapter
 		System.out.println("----> Configuração básica do acesso aos controllers");
 		
 		httpSecurity.csrf().disable()
-			.authorizeHttpRequests()
+			//.authorizeHttpRequests()
+			.authorizeRequests()
+			// requisições liberadas
+			.antMatchers(HttpMethod.GET, "/categoria").permitAll()
+			.antMatchers(HttpMethod.GET, "/categoria/search").permitAll()
+			.antMatchers(HttpMethod.GET, "/cliente/*").permitAll()
+			.antMatchers(HttpMethod.POST, "/pedido").permitAll()
+			.antMatchers(HttpMethod.GET, "/produto").permitAll()
+			.antMatchers(HttpMethod.GET, "/produto/categoria/*").permitAll()
+			.antMatchers(HttpMethod.GET, "/produto/*").permitAll()
+			.antMatchers(HttpMethod.GET, "/produto/busca").permitAll()	
 			.antMatchers(HttpMethod.GET, "/produto").permitAll()
 			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.anyRequest().permitAll();
-		
+			
+			//.anyRequest().authenticated().and().cors(); //-> desabilita a autenticação e o cors
+			//.anyRequest().permitAll();
+			.anyRequest().authenticated().and().cors();
 		httpSecurity.addFilterBefore(new TokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	

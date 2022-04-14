@@ -16,4 +16,10 @@ public interface ICategoriaService {
 	
 	// Este método vai recuperar todas as categorias por palavra chave
 	public ArrayList<Categoria> recuperarPorPalavraChave(String palavraChave);
+	
+	// Este método vai recuperar 1 unica categoria por id
+	public Categoria recuperarPorId(int id);
+	
+	// recuperar todas ordenadas pelo Id
+	public ArrayList<Categoria> recuperarTodasOrdenadasPeloId();
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.eng_software.loja.dto.PathDTO;
 import br.com.eng_software.loja.model.Categoria;
 import br.com.eng_software.loja.model.Produto;
 import br.com.eng_software.loja.services.IProdutoService;
@@ -42,18 +43,21 @@ public class ProdutoController {
 	
 	// Enviar foto do produto
 	@PostMapping("/produto/upload")
-	public ResponseEntity<String> uploadFoto(@RequestParam(name = "arquivo") MultipartFile arquivo) {
+	public ResponseEntity<PathDTO> uploadFoto(@RequestParam(name = "arquivo") MultipartFile arquivo) {
 		String path = upload.uploadFile(arquivo);
 		if (path != null) {
-			return ResponseEntity.status(201).body(path);
+			PathDTO pathDTO = new PathDTO();
+			pathDTO.setPathToFile(path);
+			return ResponseEntity.status(201).body(pathDTO);
 		}
 		return ResponseEntity.badRequest().build();
 	}
 	
-	// listar produtos disponíveis
+	// listar produtos disponíveis e em destaque
 	@GetMapping("/produto")
 	public ResponseEntity<ArrayList<Produto>> recuperarTodos() {
-		return ResponseEntity.ok(service.listarDisponiveis());
+		//return ResponseEntity.ok(service.listarDisponiveis()); // -> listar disponiveis
+		return ResponseEntity.ok(service.listarDestaques());
 	}
 	
 	// listar produtos por categoria
@@ -80,6 +84,11 @@ public class ProdutoController {
 			return ResponseEntity.ok(service.listarPorPalavraChave(key));
 		}
 		return ResponseEntity.badRequest().build();
+	}
+	
+	@GetMapping("/produto/todos")
+	public ResponseEntity<ArrayList<Produto>> buscarTodos() {
+		return ResponseEntity.ok(service.listarTodos());
 	}
 	
 }

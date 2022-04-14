@@ -32,6 +32,9 @@ public class Produto {
 	@Column(name = "disponivel")
 	private int disponivel;
 	
+	@Column(name = "destaque")
+	private int destaque;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
@@ -90,5 +93,15 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}	
+	}
+
+	public int getDestaque() {
+		return destaque;
+	}
+
+	public void setDestaque(int destaque) {
+		this.destaque = destaque;
+	}
+	
+	
 }

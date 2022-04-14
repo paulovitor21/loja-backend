@@ -58,6 +58,11 @@ public class ProdutoServiceImpl implements IProdutoService {
 	public ArrayList<Produto> listarIndisponiveis() {
 		return dao.findAllByDisponivel(0);
 	}
+	
+	@Override
+	public ArrayList<Produto> listarDestaques() {
+		return dao.findAllByDestaque(1);
+	}
 
 	@Override
 	public ArrayList<Produto> listarPorCategoria(Categoria categoria) {

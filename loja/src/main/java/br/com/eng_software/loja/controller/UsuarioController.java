@@ -23,16 +23,13 @@ public class UsuarioController {
 		Usuario user = service.recuperarUsuario(dadosLogin);
 		
 		if (user != null) { // usuario existe, precisa agora conferir a senha
-			if (user.getSenha().equals(dadosLogin.getSenha())) {
 				//  Cria o token do usuario
 				JWTToken jwtToken = new JWTToken();
 				
 				jwtToken.setToken(JWTTokenUtil.generateToken(user));
 				
 				return ResponseEntity.ok(jwtToken);
-			}
-			return ResponseEntity.status(403).build(); // usuario não tem autorização
 		}
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.status(403).build();
 	}
 }
