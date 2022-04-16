@@ -30,11 +30,13 @@ public class MyWebApplicationSecurityConfig extends WebSecurityConfigurerAdapter
 			.antMatchers(HttpMethod.GET, "/produto/*").permitAll()
 			.antMatchers(HttpMethod.GET, "/produto/busca").permitAll()	
 			.antMatchers(HttpMethod.GET, "/produto").permitAll()
+			.antMatchers(HttpMethod.GET, "/pedido/search/*").permitAll()
 			.antMatchers(HttpMethod.POST, "/login").permitAll()
 			
 			//.anyRequest().authenticated().and().cors(); //-> desabilita a autenticação e o cors
-			.anyRequest().permitAll();
-			//.anyRequest().authenticated().and().cors();
+			//.anyRequest().permitAll();
+			
+			.anyRequest().authenticated().and().cors();
 		httpSecurity.addFilterBefore(new TokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	

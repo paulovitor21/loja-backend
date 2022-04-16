@@ -39,13 +39,13 @@ public class PedidoServiceImpl implements IPedidoService {
 
 	@Override
 	public ArrayList<Pedido> buscarPorStatus(int status) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByStatusOrderByDataPedidoDesc(status);
 	}
 
 	@Override
-	public Pedido mudarStatus(Pedido pedido, int novoStatus) {
+	public Pedido mudarStatus(int idPedido, int novoStatus) {
 		try {
+			Pedido pedido = dao.findById(idPedido).get();
 			pedido.setStatus(novoStatus);
 			dao.save(pedido);
 			return pedido;
@@ -57,8 +57,17 @@ public class PedidoServiceImpl implements IPedidoService {
 
 	@Override
 	public ArrayList<Pedido> buscarPorPeriodo(LocalDate inicio, LocalDate fim) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAllByDataPedidoBetween(inicio, fim); 
+	}
+
+	@Override
+	public Pedido buscarPeloId(int id) {
+		return dao.findById(id).get();
+	}
+
+	@Override
+	public ArrayList<Pedido> buscarTodos() {
+		return dao.findAllByOrderByDataPedidoDesc();
 	}
 	
 	
