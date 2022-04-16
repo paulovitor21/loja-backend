@@ -20,7 +20,7 @@ public class UploadServiceImpl implements IUploadService {
 			 * retorna NULL
 			 */
 			System.out.println("DEBUG - " + arquivo.getOriginalFilename());
-			String caminho = "C:\\projeto-faculdade\\loja_admin\\src\\images";
+			String caminho = "C:\\projeto-faculdade\\loja_admin\\src\\assets\\images";
 			Path path = Paths.get(caminho + File.separator + arquivo.getOriginalFilename());
 			Files.copy(arquivo.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			System.out.println("DEBUG - Arquivo copiado...");

@@ -19,7 +19,7 @@ import io.jsonwebtoken.security.Keys;
 public class JWTTokenUtil {
 	
 	private static final String SECRET_KEY = "*N@tur@55pW3bS3cur1tyT0k3n202101";
-	private static final int EXPIRATION = 12*60*1000;
+	private static final int EXPIRATION = 120*60*1000;
 	private static final String TK_PREFIX = "Bearer";
 	private static final String HEADER_AUTH = "Authorization";
 	
