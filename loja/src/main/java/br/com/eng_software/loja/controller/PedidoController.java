@@ -1,5 +1,6 @@
 package br.com.eng_software.loja.controller;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.eng_software.loja.dto.FiltroPedidoDTO;
+import br.com.eng_software.loja.dto.VendasPorDataDTO;
 import br.com.eng_software.loja.model.Cliente;
 import br.com.eng_software.loja.model.Pedido;
 import br.com.eng_software.loja.services.IClienteService;
@@ -55,9 +58,10 @@ public class PedidoController {
 		}
 	}
 	
-	@GetMapping("/pedido")
-	public ResponseEntity<ArrayList<Pedido>> recuperarTodos() {
-		return ResponseEntity.ok(service.buscarTodos());
+	@PostMapping("/pedido/filtrar")
+	public ResponseEntity<ArrayList<Pedido>> recuperarTodos(@RequestBody FiltroPedidoDTO parametros) {
+		System.out.println(parametros);
+		return ResponseEntity.ok(service.filtrarPorVariosCriterios(parametros));
 	}
 	
 	@PutMapping("/pedido/{id}")
@@ -79,4 +83,12 @@ public class PedidoController {
 	public ResponseEntity<Pedido> recuperarPeloId(@PathVariable int id) {
 		return ResponseEntity.ok(service.buscarPeloId(id));
 	}
+	
+	@GetMapping("/pedido/recentes")
+	public ResponseEntity<ArrayList<VendasPorDataDTO>> recuperaUltimasVendas(@RequestParam("inicio") String dataIni, @RequestParam("fim") String dataFim){
+		LocalDate ini = LocalDate.parse(dataIni);
+		LocalDate fim = LocalDate.parse(dataFim);
+		return ResponseEntity.ok((ArrayList<VendasPorDataDTO>)service.recuperarTotaisUltimaSemana(ini, fim));
+	}
+	
 }

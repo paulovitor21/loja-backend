@@ -29,11 +29,17 @@ public class Produto {
 	@Column(name = "preco_produto", nullable = false)
 	private double preco;
 	
+	@Column(name = "preco_promocional", nullable = false)
+	private double precoPromo;
+	
 	@Column(name = "disponivel")
 	private int disponivel;
 	
 	@Column(name = "destaque")
 	private int destaque;
+	
+	@Column(name = "pronta_entrega")
+	private int prontaEntrega;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -78,6 +84,14 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+	
+	public double getPrecoPromo() {
+		return precoPromo;
+	}
+
+	public void setPrecoPromo(double precoPromo) {
+		this.precoPromo = precoPromo;
+	}
 
 	public int getDisponivel() {
 		return disponivel;
@@ -102,6 +116,16 @@ public class Produto {
 	public void setDestaque(int destaque) {
 		this.destaque = destaque;
 	}
+
+	public int getProntaEntrega() {
+		return prontaEntrega;
+	}
+
+	public void setProntaEntrega(int prontaEntrega) {
+		this.prontaEntrega = prontaEntrega;
+	}
+	
+	
 	
 	
 }
